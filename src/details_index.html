@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+
+<!--[if lt IE 7 ]> <html class="ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html class="ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html class="ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html class="ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html class=""> <!--<![endif]-->
+<head>
+    <!-- compiled CSS --><% styles.forEach( function ( file ) { %>
+    <link rel="stylesheet" type="text/css" href="<%= file %>" /><% }); %>
+
+    <!-- compiled JavaScript --><% scripts.forEach( function ( file ) { %>
+    <script type="text/javascript" src="<%= file %>"></script><% }); %>
+
+</head>
+<body>
+<div ng-app="campsearch-details">
+    <div style="width:942px">
+        <div ng-view></div>
+    </div>
+</div>
+</body>
+</html>

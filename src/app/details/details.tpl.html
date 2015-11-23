@@ -1,0 +1,194 @@
+<!--<script type="text/javascript"-->
+        <!--language="javascript"-->
+        <!--src="{{ getGuestRatedSrc() }}"></script>-->
+
+<div id="campsearch-details" class="campsearch" ng-show="park_details">
+    <div id="navigation" style="margin-bottom: 10px;">
+        <a class="button" href="{{ config.backendUrl }}/find-a-park/#/?{{ search_query }}" >Search Again</a>
+    </div>
+
+    <ul id="campsearch-details-tabs" class="nav nav-tabs" style="margin-bottom: 5px;">
+        <li data-toggle="tab" href="#info-wrapper" style="padding: 3px;">Info</li>
+        <li data-toggle="tab" href="#reviews-wrapper" style="padding: 3px;">Reviews</li>
+        <li ng-show="park_details.image_paths.length > 0"
+            data-toggle="tab"
+            href="#photos-wrapper"
+            style="padding: 3px;">Photos</li>
+        <li id="contactus-tab" data-toggle="tab" href="#contactus-wrapper" style="padding: 3px;">Contact us</li>
+    </ul>
+
+    <div class="tab-content">
+
+        <!--PARK INFO-->
+        <div class="tab-pane fade in active" id="info-wrapper">
+            <div id="info">
+                <div id="left-pane" class="" style="">
+                    <div id="geo-info"
+                         class="rounded-box sub-pane">
+
+                        <h3 style="margin-bottom: 5px;color: #BF5600;">{{ park_details.title }}</h3>
+                        <div id="address">
+                            {{ park_details.street }} <br/>
+                            {{ park_details.city }}, {{ park_details.province }} {{ park_details.postal_code }}
+                            <p>{{ park_details.field_camp_phone_number | phone }}</p>
+
+                            <div style="margin-bottom: 5px;">
+                                <a id="contactus-button" class="button" href="">Contact us</a>
+                            </div>
+                        </div>
+                        <p>
+                            <a href="{{(park_details.field_camp_website_url.indexOf('http') > -1)?'':'http://'}}{{ park_details.field_camp_website_url }}">Visit our website</a> <br/>
+                            <a ng-if="park_details.field_camp_reservation_website_url"
+                               href="{{ park_details.field_camp_reservation_website_url }}">Make reservation</a> <br/>
+                            See map: <a href="http://www.google.com/maps?q={{ getMapQuery() | encodeUri }}">Google Maps</a>
+                        </p>
+                    </div>
+                    <div id="gmap" class="rounded-box sub-pane" style="margin-top:5px;padding-left:10px;">
+                        <a target="_blank" href="http://www.google.com/maps?q={{ getMapQuery() | encodeUri }}&t=h&z=16">
+                            <img src="http://maps.googleapis.com/maps/api/staticmap?center={{ park_details.lat | encodeUri }},{{ park_details.lng | encodeUri }}&zoom=11&size=200x200&markers=color:blue%7Clabel:%7C{{ park_details.lat | encodeUri }},{{ park_details.lng | encodeUri }}&sensor=false">
+                        </a>
+                    </div>
+                    <!--<div id="report-card" class="rounded-box sub-pane" style="width:225px;margin-top:5px;">-->
+                        <!--<div id="ratingScoreRegion">-->
+                        <!--</div>-->
+                    <!--</div>-->
+                </div>
+
+                <div id="right-pane" class="">
+                    <div id="description">
+                        <p>{{ park_details.field_park_description_value }}</p>
+                    </div>
+                    <div id="directions">
+                        <p><span style="font-weight:bolder;font-size:13px;">{{ (park_details.field_camp_directions_value)?'Directions: ':'' }}</span>{{ park_details.field_camp_directions_value }}</p>
+                    </div>
+                    <div id="local_interest">
+                        <p><span style="font-weight:bolder;font-size:13px;">{{ (park_details.field_camp_local_interest_value)?'Local Interest: ':'' }}</span>{{ park_details.field_camp_local_interest_value }}</p>
+                    </div>
+                    <div id="features">
+                        <h2>Features/Specifications</h2>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="col-md-12"
+                                     ng-repeat="taxonomy in taxonomiesLeft">
+                                    <h3>{{ taxonomy.title }}</h3>
+                                    <ul>
+                                        <li ng-repeat="value in taxonomy.values">{{ value }}</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="col-md-12"
+                                     ng-repeat="taxonomy in taxonomiesRight">
+                                    <h3>{{ taxonomy.title }}</h3>
+                                    <ul>
+                                        <li ng-repeat="value in taxonomy.values">{{ value }}</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--<div id="park-details-ads">-->
+                <!--<div align="center" style="">-->
+                    <!--<div class="ja-moduletable moduletable" id="Mod174" style="width: 176px;left:-15px;">-->
+                        <!--<h3><span>Click for More Info</span></h3>-->
+                        <!--<div class="ja-box-ct">-->
+                            <!--<div class="bannergroup">-->
+
+                                <!--<div class="banneritem">-->
+                                    <!--<a href="/component/banners/click/138" target="_blank" title="Feedback Survey">-->
+                                        <!--<img src="http://camp-california.com/images/banners/12-13Banners/feedback-160x600.jpg" alt="Help us improve how we deilver camping info to you!">-->
+                                    <!--</a>-->
+                                    <!--&lt;!&ndash;<div class="clr"></div>&ndash;&gt;-->
+                                <!--</div>-->
+
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+
+        <!--PARK REVIEWS-->
+        <div class="tab-pane fade" id="reviews-wrapper">
+            <div class="row" style="margin-bottom:10px;">
+                <div class="col-md-12 col-md-offset-1 search-menu-choices">
+                    <button id="show-recent-reviews-button"
+                            class="active"
+                            type="button">
+                        Recent reviews
+                    </button>
+                    <button id="show-user-review-button"
+                            type="button">
+
+                        Submit your review
+                    </button>
+                </div>
+            </div>
+            <div id="recent-reviews" class="row">
+                <iframe id="MostRecentReviewsSinglePropertyIFrame"
+                        frameborder="0"
+                        scrolling="no"
+                        ng-src="{{ getGuestRatedRecentReviewsSrc() }}"
+                        width="100%"
+                        height="1600px"
+                        allowtransparency="true"></iframe>
+            </div>
+            <div id="user-review" class="row" style="display:block;">
+                <div class="col-md-offset-1 col-md-11">
+                    <iframe id="ctl00_Main_myFrame"
+                            width="100%"
+                            height="1400"
+                            scrolling="no"
+                            frameborder="0"
+                            ng-src="{{ getGuestRatedSurveySrc() }}">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+
+        <!--PARK PHOTOS-->
+        <div class="tab-pane fade" id="photos-wrapper">
+            <div style="margin:5px 5px 5px 5px;float:left;" ng-repeat="imagePath in park_details.image_paths">
+                <a class="group1 cboxElement" href="{{ config.parkImagesUrl }}{{ imagePath.filepath }}"><img width="200px" height="150px" src="{{ config.parkImagesUrl }}{{ imagePath.filepath }}"></a>
+            </div>
+        </div>
+
+        <!--PARK CONTACT-->
+        <div class="tab-pane fade" id="contactus-wrapper">
+            <!--<div class="row">-->
+            <form class="form-horizontal" role="form" style="padding: 5px 5px 5px 5px;">
+                <input type="hidden" id="park-email" value="{{ park_details.field_camp_email_email }}">
+                <div class="col-md-12">
+                    <h3>Contact {{ park_details.title }}</h3>
+                </div>
+                <div class="form-group">
+                    <label for="contactus-user-email" class="col-md-2 control-label">Your Email</label>
+                    <div class="col-md-9">
+                        <input type="email" class="form-control" id="contactus-user-email" placeholder="Email">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="contactus-user-message" class="col-md-2 control-label">Message</label>
+                    <div class="col-md-9">
+                        <textarea class="form-control" rows="5" id="contactus-user-message"></textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-11">
+                        <button id="contactus-sendmail"
+                                type="button"
+                                style="float:right;">
+                            Submit
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <!--</div>-->
+        </div>
+
+    </div>
+</div>
+
+

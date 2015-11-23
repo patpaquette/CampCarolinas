@@ -1,0 +1,388 @@
+/**
+ * This is the main application stylesheet. It should include or import all
+ * stylesheets used throughout the application as this is the only stylesheet in
+ * the Grunt configuration that is automatically processed.
+ */
+
+
+/**
+ * First, we include the Twitter Bootstrap LESS files. Only the ones used in the
+ * project should be imported as the rest are just wasting space.
+ */
+@import '../../vendor/bootstrap/less/bootstrap.less';
+
+/**
+ * This is our main variables file. It in turn imports the `variables` file from
+ * Twitter Bootstrap. We must include it last so we can overwrite any variable
+ * definitions in our imported stylesheets.
+ */
+
+@import 'variables.less';
+@base: #BF5600;
+@base-light: #ffb273;
+@complement: #007334;
+@outline: #D3D3D3;
+@base-background: #d9dcd4;
+@base-text: #666666;
+@base-font-size: 10pt;
+@base-tab-font-size: 16pt;
+@complement-background: #fffae5;
+
+//[class*="span"] { background: #EEF; }
+//[class*="span"] [class*="span"] { background: #FEE; }
+
+.v-align-helper {
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+}
+
+#ca-regions-map{
+  area:hover{
+    cursor:pointer;
+  }
+}
+
+#ja-content-main{
+  overflow: visible;
+}
+#ja-container{
+  overflow: visible;
+}
+
+ul.dropdown-menu{
+  padding-left:5px;
+  padding-right:5px;
+
+  &li{
+    background: none;
+  }
+}
+
+#scope-category-dropdown-button{
+  border-radius: 0px;
+}
+
+.campsearch{
+
+  ul.nav > li{
+    border: @outline solid 1px;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    background-color: @base-background;
+    background: none;
+    font-size: @base-tab-font-size;
+
+    &:hover{
+      background-color: @outline;
+      background:none;
+
+      a{
+
+      }
+    }
+
+    &.tab-active{
+      background-color: @base;
+      color: white;
+    }
+  }
+
+  button{
+    border: 1px solid @base;
+    color: @complement;
+    border-radius: 5px 5px 5px 5px;
+
+    a{
+      color: @complement;
+    }
+  }
+
+  .search-menu-choices{
+    button{
+      border: @outline solid 1px;
+      background: none;
+      background-color: white;
+
+      &.active{
+        border: @base solid 1px;
+        background-color: @base-background;
+      }
+    }
+  }
+
+}
+
+#results-area{
+  margin-top: 10px;
+
+  .result-ads{
+    //margin-left:610px;
+    width: 330px;
+    background-color:white;
+    padding-left:10px;
+    float:right;
+  }
+
+  .result-rowset{
+    width: 100%;
+    //float:left;
+  }
+  .result-row{
+    .clearfix;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: @outline solid 1px;
+    min-height: 120px;
+
+    .result-title{
+      a{
+        color: @base;
+      }
+    }
+  }
+}
+
+#results-wrapper{
+  margin-top: 20px;
+
+  h1, h2, h3, h4, h5, h6 {
+    clear:none;
+  }
+}
+
+#search-button{
+  border-color: @base;
+  color: @complement;
+  background-color: white;
+}
+
+#search-option-radius{
+  margin-top: 5px;
+}
+
+#state-overview{
+  .tab-content{
+    padding: 5px 5px 5px 5px;
+    background-color: @complement-background;
+  }
+}
+
+#campsearch-wrapper{
+  color: @base-text;
+  font-size: @base-font-size;
+
+  select{
+    margin:none;
+  }
+
+  p{
+
+  }
+
+  a{
+    &:hover{
+      cursor:pointer;
+    }
+
+    padding: 0px;
+    margin: 0px;
+    border: none;
+    color: @base;
+  }
+
+
+
+  .tab-content{
+    border: @outline solid 1px;
+  }
+
+  ul.pagination-custom{
+    border: none;
+
+    li{
+      font-size: @base-font-size;
+      background: none;
+      padding: 0px;
+
+      &.active{
+        a{
+          color: @base;
+          background-color: white;
+        }
+      }
+    }
+
+    a{
+      font-size: @base-font-size;
+      color: @base-text;
+      margin-left: 5px;
+      margin-right: 5px;
+    }
+  }
+
+  .dropdown-menu{
+    a{
+      &:hover{
+        cursor:default;
+      }
+    }
+  }
+
+}
+
+#search-option{
+  .nav-tabs{
+    float:left;
+    border: 0px;
+  }
+
+  .tab-content{
+    padding-left: 10px;
+    height: 200px;
+    border: @outline solid 1px;
+    overflow: auto;
+
+    .checkbox{
+      margin-top:0px;
+      margin-bottom:0px;
+    }
+  }
+
+  ul.nav li{
+    font-size: @base-font-size;
+
+    &:first-child{
+      border-top-left-radius: 10px;
+    }
+
+    &:last-child{
+      border-bottom-left-radius: 10px;
+    }
+
+    a{
+      font-size: @base-font-size;
+    }
+  }
+}
+
+#campsearch-wrapper{
+  padding: 0 15px;
+}
+
+#search-area{
+  //border: 1px solid;
+}
+
+#result-area{
+  //border: 1px solid;
+}
+
+.nav, .pagination, .carousel a { cursor: pointer; }
+
+.campsearch-checkbox-wrapper{
+  vertical-align: text-bottom;
+  //border: 1px solid;
+}
+
+.campsearch-checkbox-wrapper label{
+  vertical-align: text-bottom;
+}
+
+.rounded-box{
+  border: @outline solid 1px;
+  border-radius: 5px 5px 5px 5px;
+  padding: 5px 5px 5px 5px;
+}
+
+
+//CAMPSEARCH DETAILS
+#campsearch-details{
+  width: 912px;
+  float:left;
+
+  #slides{
+    display:none;
+  }
+
+  #left-pane{
+    float:left;
+    width:225px;
+
+  }
+
+  #left-pane .sub-pane{
+    width: 225px;
+    background-color: #fffae5;
+  }
+
+  #right-pane{
+//    width: 500px;
+    margin-left:240px;
+  }
+
+  .campsearch b{
+    font-weight: bold;
+  }
+
+  #geo-info{
+    padding: 10px 10px 10px 10px;
+  }
+
+  #info{
+    width: 740px;
+    float:left;
+  }
+
+  .tab-content{
+  }
+
+  #gmap{
+    width: 225px;
+  }
+
+  ul.nav > li{
+    border: #D3D3D3 solid 1px;
+    border-bottom: none;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    background-color: #EFEFEF;
+    background: none;
+    font-size: 20px;
+    color: @base;
+  }
+
+  ul.nav > li:hover{
+    background-color: #D3D3D3;
+  }
+
+  ul.nav > li > a:hover{
+    border: #D3D3D3 solid 1px;
+    background-color: #D3D3D3;
+  }
+
+
+  ul.nav > li.tab-active{
+    background-color: #BF5600;
+    color: white;
+  }
+
+  #park-details-ads{
+    padding-top: 20px;
+    margin-left: 755px;
+    width: 160px;
+  }
+
+  a.button{
+    border: 1px solid #BF5600;
+    color: #007334;
+    border-radius: 5px 5px 5px 5px;
+    background-color: #EFEFEF;
+    padding: 3px;
+  }
+}
+
